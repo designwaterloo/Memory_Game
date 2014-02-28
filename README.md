@@ -3,7 +3,7 @@ Memory Game
 
 Simple application for teaching basic circuit design and microcontroller capabilities. Includes setup mode operation, and a memory game with coloured LEDs and audio output. 
 
-Game Play
+Gameplay
 ---------
 
 * When the device is powered up (by connecting the battery), all four LEDs will blink in sequence and a two note melody will play.
