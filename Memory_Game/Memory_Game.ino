@@ -1,4 +1,4 @@
-
+// Defining the pin mapping for the various functions
 #define BUTTON_1       P2_0
 #define BUTTON_2       P2_1
 #define BUTTON_3       P2_2
@@ -12,15 +12,15 @@
 #define RANDOM_SEED    A1
 
 
+// Global Variables
 uint8_t sequence[50], player_input[50], highscore[50];
 uint8_t game_level, highscore_level;
 uint16_t game_speed, input_speed;
 
-long vel = 20000;
-
+// Setup and initialize microcontroller functionality (this function runs once at startup)
 void setup() {
    
-  // Allows serial communication to terminal over USB
+  // Allows serial communication to terminal over USB (not used for this project)
   Serial.begin(9600);
 
   // Setup the 4 game LEDs as outputs
@@ -60,17 +60,20 @@ void setup() {
   game_speed = 500;       // Set the speed of the game sequence to 500 milliseconds
   input_speed = 500;      // Set the input speed to 500 milliseconds
   
+  // Run a brief LED and sound sequence to indicate the program has started
   program_init_sequence();  
   
   // -------------------------- Assembly Verification --------------------------- //
   //
   // This section of code is used to check functionality of the circuit during the
   // assembly procedure.  It is intended solely as a teaching tool and has no effect
-  // on game play.  The 'Build Verification' secions can be deleted if only game
+  // on game play.  The 'Assembly Verification' secion can be deleted if only game
   // play is desired and this game will still function correctly.
   
+  // When a button is pressed, turn on corresponding LED and play a tone
   while(1)
   {  
+    // When S2 is pressed, exit 'Assembly Verification' mode and start gameplay
     if (digitalRead(SWITCH) == LOW)
     {
       break;
@@ -96,13 +99,15 @@ void setup() {
   
   // ------------------------ Assembly Verification End-------------------------- //
   
-   // Play the Game Intro
+   // Play the Game Intro Sequence of lights and sound
    game_start_sequence();  
 }
 
+
+// The main loop for the program.  This section of code repeats as long as the device
+// is powered up.
 void loop()
 {  
-  
   
   // --------------------------------- Gameplay --------------------------------- //
   
@@ -154,7 +159,7 @@ void loop()
       if (game_level > highscore_level)            // Check for highscore
       {
         highscore_level = game_level;
-        for (int h=0; h<highscore_level; h++)
+        for (int h=0; h<highscore_level; h++)    
         {
           highscore[h] = sequence[h];              // Save highscore
          }
@@ -173,7 +178,7 @@ void loop()
   
 }
 
-// A sequence of LED flashes and tones to indicate the game has started
+// A sequence of LED flashes and tones to indicate the program has started
 void program_init_sequence()
 {
   for (int i=0; i<1; i++){
@@ -194,18 +199,18 @@ void program_init_sequence()
     delay(100);
   } 
   digitalWrite(LED_4, LOW);
-  tone(SPEAKER, 700);
-  delay(50);
+  tone(SPEAKER, 1976);
+  delay(60);
   noTone(SPEAKER);
-  delay(50);
-  tone(SPEAKER, 700);
-  delay(50);
+  delay(1);
+  tone(SPEAKER, 2637);
+  delay(360);
   noTone(SPEAKER);
   delay(1000); 
 }
 
 
-// A sequence of LED flashes and tones to indicate the game has started
+// A sequence of LED flashes and tones to indicate gameplay mode as started
 void game_start_sequence()
 {
   for (int i=0; i<1; i++){
@@ -226,33 +231,33 @@ void game_start_sequence()
     delay(100);
   } 
   digitalWrite(LED_4, LOW);
-  tone(SPEAKER, 165);
-  delay(100);
+  tone(SPEAKER, 1319);
+  delay(120);
   noTone(SPEAKER);
   delay(10);
   
-  tone(SPEAKER, 196);
-  delay(100);
+  tone(SPEAKER, 1568);
+  delay(120);
   noTone(SPEAKER);
   delay(10);
   
-  tone(SPEAKER, 330);
-  delay(100);
+  tone(SPEAKER, 2637);
+  delay(120);
   noTone(SPEAKER);
   delay(10);
   
-  tone(SPEAKER, 262);
-  delay(100);
+  tone(SPEAKER, 2093);
+  delay(120);
   noTone(SPEAKER);
   delay(10);
   
-  tone(SPEAKER, 294);
-  delay(100);
+  tone(SPEAKER, 2349);
+  delay(120);
   noTone(SPEAKER);
   delay(10);
   
-  tone(SPEAKER, 392);
-  delay(100);
+  tone(SPEAKER, 3136);
+  delay(120);
   noTone(SPEAKER);
   delay(1000); 
 }
@@ -309,6 +314,7 @@ void you_lose()
     sequence[a] = random(1, 5);
   }
 }
+
 
 // Function that plays back the current highscore at a faster rate
 void high_score_playback(unsigned int playback_speed)
