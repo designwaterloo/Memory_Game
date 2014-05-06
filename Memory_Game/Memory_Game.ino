@@ -1,3 +1,15 @@
+/**************************************************************************/
+/* 
+   @file     Memry_Game.ino
+   @author   Ryan Walker (University of Waterloo)
+	@license  BSD (see README.md)
+   
+   Simple application for teaching basic circuit design and microcontroller 
+   capabilities. Includes setup mode operation, and a memory game with 
+   coloured LEDs and audio output.
+*/
+/**************************************************************************/
+
 // Defining the pin mapping for the various functions
 #define BUTTON_1       P2_0
 #define BUTTON_2       P2_1
