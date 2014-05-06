@@ -1,6 +1,6 @@
 /**************************************************************************/
 /* 
-   @file     Memry_Game.ino
+   @file     Memory_Game.ino
    @author   Ryan Walker (University of Waterloo)
    @license  BSD (see README.md)
    
