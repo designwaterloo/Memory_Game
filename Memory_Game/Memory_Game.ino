@@ -2,7 +2,7 @@
 /* 
    @file     Memry_Game.ino
    @author   Ryan Walker (University of Waterloo)
-	@license  BSD (see README.md)
+   @license  BSD (see README.md)
    
    Simple application for teaching basic circuit design and microcontroller 
    capabilities. Includes setup mode operation, and a memory game with 
